@@ -18,7 +18,7 @@ export const NavigationBar: FC = () => {
   } = useNavigationBar();
   return (
     <>
-      <section className="min-h-[120px] my-5 max-w-[800px] w-full flex items-center px-10 shadow-md rounded-full mx-auto">
+      <section className="min-h-[120px] my-5 max-w-[800px] w-full flex items-center px-10 shadow-custom rounded-full mx-auto">
         {isProductPage && (
           <button
             onClick={() => backToHome()}

@@ -12,7 +12,7 @@ export const ProductsGrid: FC<ProductsGridProps> = ({ products, title }) => {
   }
 
   return (
-    <div className="flex flex-col w-full shadow-xl p-8 rounded-lg">
+    <div className="flex flex-col w-full shadow-custom p-8 rounded-xl">
       <p className="text-xl font-bold mb-5">{title}</p>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4 w-full h-full pb-3">
         {products.map((product) => (
