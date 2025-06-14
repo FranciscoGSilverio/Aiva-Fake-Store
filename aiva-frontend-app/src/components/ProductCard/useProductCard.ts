@@ -6,10 +6,13 @@ import { toast } from "sonner";
 
 export const useProductCard = () => {
   const { setProducts } = useDataContext();
+
   const [isConfirmationOpen, setIsConfirmationOpen] = useState<boolean>(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
 
   const handleDeleteProduct = useCallback(
     async (id: number) => {
+      setIsDeleteLoading(true);
       const isDeleted = await deleteProduct(id);
       if (isDeleted) {
         const _products = await getProducts();
@@ -19,13 +22,16 @@ export const useProductCard = () => {
         toast.error("Erro ao excluir o produto. Tente novamente.");
       }
 
+      setIsDeleteLoading(false);
       setIsConfirmationOpen(false);
     },
     [setIsConfirmationOpen, toast]
   );
+
   return {
     isConfirmationOpen,
     setIsConfirmationOpen,
     handleDeleteProduct,
+    isDeleteLoading,
   };
 };

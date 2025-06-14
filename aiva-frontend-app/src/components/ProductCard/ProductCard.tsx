@@ -4,10 +4,15 @@ import { Trash, ShoppingCart } from "lucide-react";
 import { useProductCard } from "./useProductCard";
 import { toast } from "sonner";
 import { SimpleConfirmationModal } from "../SimpleConfirmationModal/SimpleConfirmationModal";
+import { Button } from "../ui/button";
 
 export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
-  const { isConfirmationOpen, setIsConfirmationOpen, handleDeleteProduct } =
-    useProductCard();
+  const {
+    isConfirmationOpen,
+    setIsConfirmationOpen,
+    handleDeleteProduct,
+    isDeleteLoading,
+  } = useProductCard();
   return (
     <>
       <div
@@ -28,24 +33,24 @@ export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
         </div>
 
         <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-          <button
+          <Button
             onClick={(e) => {
               e.stopPropagation();
               toast.success("Product added to cart!");
             }}
-            className="bg-white p-1.5 rounded-full shadow hover:bg-gray-100"
+            className="bg-white p-1.5 rounded-full shadow hover:bg-gray-100 cursor-pointer"
           >
             <ShoppingCart className="w-5 h-5 text-gray-700" />
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={(e) => {
               e.stopPropagation();
               setIsConfirmationOpen(true);
             }}
-            className="bg-white p-1.5 rounded-full shadow hover:bg-gray-100"
+            className="bg-white p-1.5 rounded-full shadow hover:bg-gray-100 cursor-pointer"
           >
             <Trash className="w-5 h-5 text-red-500" />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -53,6 +58,7 @@ export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
         open={isConfirmationOpen}
         onOpenChange={(state) => setIsConfirmationOpen(state)}
         onConfirm={() => handleDeleteProduct(id)}
+        loading={isDeleteLoading}
       />
     </>
   );

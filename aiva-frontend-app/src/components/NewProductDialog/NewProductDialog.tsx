@@ -6,6 +6,7 @@ import { CustomSelectComponent } from "../CustomSelectComponent/CustomSelectComp
 import { Button } from "../ui/button";
 import { Plus, Trash } from "lucide-react";
 import { useNewProductDialog } from "./useNewProductDialog";
+import { DefaultButton } from "../DefaultButton/DefaultButton";
 
 type NewProductDialogProps = {
   addProductDialogOpen: boolean;
@@ -16,9 +17,10 @@ export const NewProductDialog: FC<NewProductDialogProps> = ({
   addProductDialogOpen,
   setAddProductDialogOpen,
 }) => {
-  const { handleAddNewProduct, categoryOptions } = useNewProductDialog({
-    setAddProductDialogOpen,
-  });
+  const { handleAddNewProduct, categoryOptions, isCreateLoading } =
+    useNewProductDialog({
+      setAddProductDialogOpen,
+    });
 
   return (
     <CustomDialog
@@ -110,13 +112,15 @@ export const NewProductDialog: FC<NewProductDialogProps> = ({
               )}
             </FieldArray>
             <div className="flex justify-end gap-2 mt-4">
-              <Button
+              <DefaultButton
                 onClick={() => setAddProductDialogOpen(false)}
-                className="bg-white text-black border border-gray-300 hover:bg-gray-100"
+                variant="outline"
               >
                 Fechar
-              </Button>
-              <Button type="submit">Adicionar Produto</Button>
+              </DefaultButton>
+              <DefaultButton type="submit" loading={isCreateLoading}>
+                Adicionar Produto
+              </DefaultButton>
             </div>
           </Form>
         )}

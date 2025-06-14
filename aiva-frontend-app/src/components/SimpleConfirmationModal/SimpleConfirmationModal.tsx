@@ -9,7 +9,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { DefaultButton } from "../DefaultButton/DefaultButton";
 
 type SimpleConfirmationModalProps = {
   open: boolean;
@@ -19,6 +19,7 @@ type SimpleConfirmationModalProps = {
   confirmLabel?: string;
   cancelLabel?: string;
   onConfirm: () => void;
+  loading?: boolean;
 };
 
 export const SimpleConfirmationModal: FC<SimpleConfirmationModalProps> = ({
@@ -29,6 +30,7 @@ export const SimpleConfirmationModal: FC<SimpleConfirmationModalProps> = ({
   confirmLabel = "Excluir",
   cancelLabel = "Cancelar",
   onConfirm,
+  loading = false,
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -38,12 +40,16 @@ export const SimpleConfirmationModal: FC<SimpleConfirmationModalProps> = ({
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end gap-2">
-          <Button variant="outline" onClick={() => onOpenChange(false)}>
+          <DefaultButton variant="outline" onClick={() => onOpenChange(false)}>
             {cancelLabel}
-          </Button>
-          <Button variant="destructive" onClick={onConfirm}>
+          </DefaultButton>
+          <DefaultButton
+            variant="destructive"
+            onClick={onConfirm}
+            loading={loading}
+          >
             {confirmLabel}
-          </Button>
+          </DefaultButton>
         </DialogFooter>
       </DialogContent>
     </Dialog>
