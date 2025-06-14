@@ -1,11 +1,22 @@
 "use client";
 
 import { FC } from "react";
-import { User, ShoppingBag, CirclePlus, ArrowLeft } from "lucide-react";
+import {
+  User,
+  ShoppingBag,
+  CirclePlus,
+  ArrowLeft,
+  Plus,
+  X,
+  Trash,
+} from "lucide-react";
 import { useNavigationBar } from "./useNavigationBar";
 import { CustomDialog } from "../Dialog/Dialog";
 import { Input } from "../ui/input";
 import { CustomSelectComponent } from "../CustomSelectComponent/CustomSelectComponent";
+import { Formik, Form, Field, FieldArray } from "formik";
+import { Button } from "../ui/button";
+import { NewProductDialog } from "../NewProductDialog/NewProductDialog";
 
 export const NavigationBar: FC = () => {
   const {
@@ -52,19 +63,10 @@ export const NavigationBar: FC = () => {
         </div>
       </section>
 
-      <CustomDialog
-        title="Adicionar Item"
-        description="Forneça os detalhes do produto que queira adicionar"
-        open={addProductDialogOpen}
-        onOpenChange={(open: boolean) => {
-          setAddProductDialogOpen(open);
-        }}
-      >
-        <Input placeholder="Título" aria-label="Título" />
-        <Input placeholder="Preço" aria-label="Título" type="number" />
-        <Input placeholder="Descrição" aria-label="Título" />
-        <CustomSelectComponent options={categoryOptions} />
-      </CustomDialog>
+      <NewProductDialog
+        addProductDialogOpen={addProductDialogOpen}
+        setAddProductDialogOpen={setAddProductDialogOpen}
+      />
     </>
   );
 };

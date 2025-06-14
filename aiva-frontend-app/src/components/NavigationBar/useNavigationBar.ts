@@ -14,17 +14,17 @@ export const useNavigationBar = () => {
 
   const [addProductDialogOpen, setAddProductDialogOpen] = useState(false);
 
+  const updateProductsByCategory = async (categoryId: string) => {
+    const newProducts = await getProductsByCategory(Number(categoryId));
+    setProducts(newProducts);
+  };
+
   const categoryOptions = useMemo(() => {
     return categories.map((category) => ({
       value: String(category.id),
       label: category.name,
     }));
   }, [categories]);
-
-  const updateProductsByCategory = async (categoryId: string) => {
-    const newProducts = await getProductsByCategory(Number(categoryId));
-    setProducts(newProducts);
-  };
 
   const backToHome = () => {
     router.push("/");
@@ -35,7 +35,7 @@ export const useNavigationBar = () => {
     backToHome,
     addProductDialogOpen,
     setAddProductDialogOpen,
-    categoryOptions,
     updateProductsByCategory,
+    categoryOptions,
   };
 };

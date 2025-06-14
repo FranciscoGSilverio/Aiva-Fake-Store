@@ -16,3 +16,11 @@ export type Product = {
   creationAt: string;
   updatedAt: string;
 };
+
+export type NewProductDto = {
+  title: string;
+  price: number;
+  description: string;
+  categoryId: string;
+  images: string[];
+};
