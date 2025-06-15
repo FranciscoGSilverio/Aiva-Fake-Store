@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useDataContext } from "@/providers/DataContext";
 import { getProductsByCategory } from "@/useCases/categories/getProductsByCategory";
 import { usePathname, useRouter } from "next/navigation";
@@ -8,9 +9,9 @@ import { useMemo, useState } from "react";
 export const useNavigationBar = () => {
   const { categories, setProducts } = useDataContext();
 
-  const pathname = usePathname();
+  const [, setIsLoggedIn] = useLocalStorage<boolean>("isLoggedIn", false);
+
   const router = useRouter();
-  const isProductPage = pathname.includes("/product/");
 
   const [addProductDialogOpen, setAddProductDialogOpen] = useState(false);
 
@@ -30,12 +31,17 @@ export const useNavigationBar = () => {
     router.push("/");
   };
 
+  const logout = () => {
+    setIsLoggedIn(false);
+    router.push("/login");
+  };
+
   return {
-    isProductPage,
     backToHome,
     addProductDialogOpen,
     setAddProductDialogOpen,
     updateProductsByCategory,
     categoryOptions,
+    logout,
   };
 };

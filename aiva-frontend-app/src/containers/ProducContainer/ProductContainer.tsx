@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useProductContainer } from "./useProductContainer";
 import { ProductsGrid } from "src/components/ProductsGrid/ProductsGrid";
-import { Pencil, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Pencil, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NewProductDialog } from "@/components/NewProductDialog/NewProductDialog";
 
@@ -14,13 +14,21 @@ export const ProductContainer = () => {
     isUpdateProductDialogOpen,
     setIsUpdateProductDialogOpen,
     fetchProduct,
+    backToHome,
   } = useProductContainer();
 
   if (!product) {
     return <div className="text-center text-gray-500">Loading product...</div>;
   }
   return (
-    <>
+    <div className="relative">
+      <button
+        onClick={() => backToHome()}
+        className="cursor-pointer hover:bg-gray-100 rounded-full p-2 inset-shadow-sm inset-shadow-gray-400/100 mr-5 absolute top-0 left-5"
+      >
+        <ArrowLeft />
+      </button>
+
       <section className="flex lg:flex-row flex-col items-center justify-around p-6 gap-5 lg:max-w-[60vw] shadow-custom mx-auto my-10 rounded-lg relative">
         <Button
           variant="ghost"
@@ -83,6 +91,6 @@ export const ProductContainer = () => {
         }}
         handleRefresh={fetchProduct}
       />
-    </>
+    </div>
   );
 };

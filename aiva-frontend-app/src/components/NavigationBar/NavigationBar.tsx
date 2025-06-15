@@ -17,21 +17,12 @@ export const NavigationBar: FC = () => {
     setAddProductDialogOpen,
     categoryOptions,
     updateProductsByCategory,
+    logout,
   } = useNavigationBar();
   return (
     <>
       <section className="min-h-[120px] my-5 max-w-[800px] w-full flex items-center px-10 shadow-custom rounded-full mx-auto">
-        {isProductPage && (
-          <button
-            onClick={() => backToHome()}
-            className="cursor-pointer hover:bg-gray-100 rounded-full p-2 inset-shadow-sm inset-shadow-gray-400/100 mr-5"
-          >
-            <ArrowLeft />
-          </button>
-        )}
         <div className="flex-1 flex gap-5 items-center justify-center">
-          <Input className="bg-off-white py-1 px-3" placeholder="Search..." />
-
           <CustomSelectComponent
             options={categoryOptions}
             className="w-full bg-off-white"
@@ -39,19 +30,6 @@ export const NavigationBar: FC = () => {
           />
         </div>
         <div className="flex gap-1 ml-4">
-          <CustomTooltip delayDuration={0} content="Carrinho de compras">
-            <Button
-              className="cursor-pointer hover:bg-gray-100 rounded-full p-2 disabled"
-              variant="ghost"
-            >
-              <ShoppingCart
-                style={{
-                  width: "24px",
-                  height: "24px",
-                }}
-              />
-            </Button>
-          </CustomTooltip>
           <CustomTooltip delayDuration={0} content="Adicionar um produto">
             <Button
               className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
@@ -66,10 +44,11 @@ export const NavigationBar: FC = () => {
               />
             </Button>
           </CustomTooltip>
-          <CustomTooltip delayDuration={0} content="Meu perfil">
+          <CustomTooltip delayDuration={0} content="Logout">
             <Button
               className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
               variant="ghost"
+              onClick={logout}
             >
               <User
                 style={{

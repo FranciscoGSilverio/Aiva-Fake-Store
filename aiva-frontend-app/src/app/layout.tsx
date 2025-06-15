@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { NavigationBar } from "src/components/NavigationBar/NavigationBar";
 import { Providers } from "@/providers";
 import { Montserrat } from "next/font/google";
 import { Toaster } from "sonner";
@@ -26,9 +25,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={montserrat.className}>
         <Providers>
-          <NavigationBar />
           <Toaster />
-          <main className="max-w-[90vw] mx-auto">{children}</main>{" "}
+          <main className="bg-gradient-to-br">{children}</main>{" "}
         </Providers>
       </body>
     </html>
