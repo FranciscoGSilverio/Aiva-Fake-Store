@@ -2,7 +2,6 @@
 
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useDataContext } from "@/providers/DataContext";
-import { getProductsByCategory } from "@/useCases/categories/getProductsByCategory";
 import { getProducts } from "@/useCases/products/getProducts";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
