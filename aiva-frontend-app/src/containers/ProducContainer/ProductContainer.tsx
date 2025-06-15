@@ -24,15 +24,15 @@ export const ProductContainer = () => {
     <div className="relative">
       <button
         onClick={() => backToHome()}
-        className="cursor-pointer hover:bg-gray-100 rounded-full p-2 inset-shadow-sm inset-shadow-gray-400/100 mr-5 absolute top-0 left-5"
+        className="cursor-pointer bg-gray-100 rounded-full p-2 inset-shadow-sm inset-shadow-gray-400/100 absolute top-2 sm:top-0 left-5 z-10"
       >
         <ArrowLeft />
       </button>
 
-      <section className="flex lg:flex-row flex-col items-center justify-around p-6 gap-5 lg:max-w-[60vw] shadow-custom mx-auto my-10 rounded-lg relative">
+      <section className="flex lg:flex-row flex-col items-center justify-around p-6 gap-5 lg:max-w-[60vw] shadow-custom mx-2 my-5 sm:mx-auto sm:my-10 rounded-lg relative">
         <Button
           variant="ghost"
-          className="border border-black/10 rounded-full cursor-pointer h-12 absolute top-4 right-4 z-10 hover:border-black/20 transition duration-500"
+          className="border border-black/10 rounded-full cursor-pointer h-12 absolute sm:top-4 sm:right-4 right-6 z-10 bg-gray-100 transition duration-500"
           onClick={() => setIsUpdateProductDialogOpen(true)}
         >
           <Pencil

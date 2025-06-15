@@ -40,16 +40,16 @@ export const NavigationBar: FC = () => {
           )}
           <CustomSelectComponent
             options={categoryOptions}
-            className="w-full bg-off-white"
+            className="w-full bg-off-white min-w-[50px]"
             onChange={updateProductsByCategory}
             value={categoryId}
             placeholder="Selecione uma categoria"
           />
         </div>
-        <div className="flex gap-1 ml-4">
+        <div className="flex gap-2 ml-4">
           <CustomTooltip delayDuration={0} content="Adicionar um produto">
             <Button
-              className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
+              className="cursor-pointer hover:bg-gray-100 rounded-full !px-1"
               onClick={() => setAddProductDialogOpen(true)}
               variant="ghost"
             >
@@ -63,7 +63,7 @@ export const NavigationBar: FC = () => {
           </CustomTooltip>
           <CustomTooltip delayDuration={0} content="Logout">
             <Button
-              className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
+              className="cursor-pointer hover:bg-gray-100 rounded-full !px-1"
               variant="ghost"
               onClick={logout}
             >
