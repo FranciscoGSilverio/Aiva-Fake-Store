@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ComponentProps, FC, ReactNode, useState } from "react";
+import { ComponentProps, FC, ReactNode } from "react";
 
 interface DefaultButtonProps extends ComponentProps<typeof Button> {
   children: ReactNode;

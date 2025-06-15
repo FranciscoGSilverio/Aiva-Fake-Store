@@ -1,23 +1,12 @@
 "use client";
 
 import { FC } from "react";
-import {
-  User,
-  ShoppingCart,
-  CirclePlus,
-  ArrowLeft,
-  Plus,
-  X,
-  Trash,
-} from "lucide-react";
+import { User, ShoppingCart, CirclePlus, ArrowLeft } from "lucide-react";
 import { useNavigationBar } from "./useNavigationBar";
-import { CustomDialog } from "../Dialog/Dialog";
 import { Input } from "../ui/input";
 import { CustomSelectComponent } from "../CustomSelectComponent/CustomSelectComponent";
-import { Formik, Form, Field, FieldArray } from "formik";
 import { Button } from "../ui/button";
 import { NewProductDialog } from "../NewProductDialog/NewProductDialog";
-import { Tooltip } from "@radix-ui/react-tooltip";
 import { CustomTooltip } from "../CustomTooltip/CustomTooltip";
 
 export const NavigationBar: FC = () => {

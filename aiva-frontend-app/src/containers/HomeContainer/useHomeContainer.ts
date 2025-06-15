@@ -1,7 +1,6 @@
 import { useDataContext } from "@/providers/DataContext";
 import { getCategories } from "@/useCases/categories/getCategories";
-import { useEffect, useState } from "react";
-import { Product } from "src/types/Product.type";
+import { useEffect } from "react";
 import { getProducts } from "src/useCases/products/getProducts";
 
 export const useHomeContainer = () => {
