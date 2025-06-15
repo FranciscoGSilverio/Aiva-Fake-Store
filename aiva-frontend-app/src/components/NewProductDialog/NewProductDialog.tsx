@@ -7,41 +7,51 @@ import { Button } from "../ui/button";
 import { Plus, Trash } from "lucide-react";
 import { useNewProductDialog } from "./useNewProductDialog";
 import { DefaultButton } from "../DefaultButton/DefaultButton";
+import { NewProductDto } from "@/types/Product.type";
 
 type NewProductDialogProps = {
   addProductDialogOpen: boolean;
   setAddProductDialogOpen: (open: boolean) => void;
+  initialValues?: NewProductDto;
+  handleRefresh?: () => void;
 };
 
 export const NewProductDialog: FC<NewProductDialogProps> = ({
   addProductDialogOpen,
   setAddProductDialogOpen,
+  initialValues,
+  handleRefresh = () => {},
 }) => {
-  const { handleAddNewProduct, categoryOptions, isCreateLoading } =
-    useNewProductDialog({
-      setAddProductDialogOpen,
-    });
+  const {
+    handleAddNewProduct,
+    categoryOptions,
+    isCreateLoading,
+    formikInitialValues,
+    isEdditingProduct,
+  } = useNewProductDialog({
+    setAddProductDialogOpen,
+    initialValues,
+    handleRefresh,
+  });
 
   return (
     <CustomDialog
-      title="Adicionar Item"
-      description="Forneça os detalhes do produto que queira adicionar"
+      title={isEdditingProduct ? "Atualizar item" : "Adicionar Item"}
+      description={
+        isEdditingProduct
+          ? `Atualizar ${initialValues?.title}`
+          : "Forneça os detalhes do produto"
+      }
       open={addProductDialogOpen}
       onOpenChange={(open: boolean) => {
         setAddProductDialogOpen(open);
       }}
     >
       <Formik
-        initialValues={{
-          title: "",
-          price: 0,
-          description: "",
-          categoryId: "",
-          images: [""],
-        }}
+        initialValues={formikInitialValues}
         onSubmit={handleAddNewProduct}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, values }) => (
           <Form className="flex flex-col gap-4">
             <Field
               as={Input}
@@ -75,6 +85,7 @@ export const NewProductDialog: FC<NewProductDialogProps> = ({
               onChange={(value: string) => {
                 setFieldValue("categoryId", value);
               }}
+              value={values.categoryId}
             />
 
             <FieldArray name="images">
@@ -119,7 +130,7 @@ export const NewProductDialog: FC<NewProductDialogProps> = ({
                 Fechar
               </DefaultButton>
               <DefaultButton type="submit" loading={isCreateLoading}>
-                Adicionar Produto
+                {isEdditingProduct ? "Atualizar" : "Adicionar"}
               </DefaultButton>
             </div>
           </Form>

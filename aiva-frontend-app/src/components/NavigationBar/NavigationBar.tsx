@@ -3,7 +3,7 @@
 import { FC } from "react";
 import {
   User,
-  ShoppingBag,
+  ShoppingCart,
   CirclePlus,
   ArrowLeft,
   Plus,
@@ -17,6 +17,8 @@ import { CustomSelectComponent } from "../CustomSelectComponent/CustomSelectComp
 import { Formik, Form, Field, FieldArray } from "formik";
 import { Button } from "../ui/button";
 import { NewProductDialog } from "../NewProductDialog/NewProductDialog";
+import { Tooltip } from "@radix-ui/react-tooltip";
+import { CustomTooltip } from "../CustomTooltip/CustomTooltip";
 
 export const NavigationBar: FC = () => {
   const {
@@ -48,18 +50,46 @@ export const NavigationBar: FC = () => {
           />
         </div>
         <div className="flex gap-1 ml-4">
-          <button className="cursor-pointer hover:bg-gray-100 rounded-full p-2">
-            <ShoppingBag />
-          </button>
-          <button
-            className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
-            onClick={() => setAddProductDialogOpen(true)}
-          >
-            <CirclePlus />
-          </button>
-          <button className="cursor-pointer hover:bg-gray-100 rounded-full p-2">
-            <User />
-          </button>
+          <CustomTooltip delayDuration={0} content="Carrinho de compras">
+            <Button
+              className="cursor-pointer hover:bg-gray-100 rounded-full p-2 disabled"
+              variant="ghost"
+            >
+              <ShoppingCart
+                style={{
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+            </Button>
+          </CustomTooltip>
+          <CustomTooltip delayDuration={0} content="Adicionar um produto">
+            <Button
+              className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
+              onClick={() => setAddProductDialogOpen(true)}
+              variant="ghost"
+            >
+              <CirclePlus
+                style={{
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+            </Button>
+          </CustomTooltip>
+          <CustomTooltip delayDuration={0} content="Meu perfil">
+            <Button
+              className="cursor-pointer hover:bg-gray-100 rounded-full p-2"
+              variant="ghost"
+            >
+              <User
+                style={{
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+            </Button>
+          </CustomTooltip>
         </div>
       </section>
 
