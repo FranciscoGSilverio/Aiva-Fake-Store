@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={montserrat.className}>
         <Providers>
           <Toaster />
-          <main className="bg-gradient-to-br">{children}</main>{" "}
+          <main>{children}</main>
         </Providers>
       </body>
     </html>

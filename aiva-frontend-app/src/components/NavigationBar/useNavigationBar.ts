@@ -3,11 +3,13 @@
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useDataContext } from "@/providers/DataContext";
 import { getProductsByCategory } from "@/useCases/categories/getProductsByCategory";
-import { usePathname, useRouter } from "next/navigation";
+import { getProducts } from "@/useCases/products/getProducts";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 export const useNavigationBar = () => {
   const { categories, setProducts } = useDataContext();
+  const [categoryId, setCategoryId] = useState<string | undefined>("");
 
   const [, setIsLoggedIn] = useLocalStorage<boolean>("isLoggedIn", false);
 
@@ -16,7 +18,16 @@ export const useNavigationBar = () => {
   const [addProductDialogOpen, setAddProductDialogOpen] = useState(false);
 
   const updateProductsByCategory = async (categoryId: string) => {
-    const newProducts = await getProductsByCategory(Number(categoryId));
+    setCategoryId(categoryId);
+    const limit = 10;
+    const offset = 0;
+    const newProducts = await getProducts(limit, offset, Number(categoryId));
+    setProducts(newProducts);
+  };
+
+  const resetProducts = async () => {
+    setCategoryId("");
+    const newProducts = await getProducts();
     setProducts(newProducts);
   };
 
@@ -27,21 +38,18 @@ export const useNavigationBar = () => {
     }));
   }, [categories]);
 
-  const backToHome = () => {
-    router.push("/");
-  };
-
   const logout = () => {
     setIsLoggedIn(false);
     router.push("/login");
   };
 
   return {
-    backToHome,
     addProductDialogOpen,
     setAddProductDialogOpen,
     updateProductsByCategory,
     categoryOptions,
     logout,
+    categoryId,
+    resetProducts,
   };
 };

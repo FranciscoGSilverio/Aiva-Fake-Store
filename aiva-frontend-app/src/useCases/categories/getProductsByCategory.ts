@@ -2,11 +2,13 @@ import { api } from "@/services/api";
 import { Product } from "@/types/Product.type";
 
 export const getProductsByCategory = async (
+  limit: number = 100,
+  offset: number = 0,
   categoryId: number
 ): Promise<Product[]> => {
   try {
     const { data } = await api.get(
-      `/categories/${categoryId}/products?limit=100&offset=0`
+      `/categories/${categoryId}/products?limit=${limit}&offset=${offset}`
     );
     return data;
   } catch (error) {

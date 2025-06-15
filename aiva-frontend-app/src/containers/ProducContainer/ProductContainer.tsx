@@ -60,7 +60,9 @@ export const ProductContainer = () => {
           </div>
 
           <p className="text-lg text-gray-700">${product.price}</p>
-          <p className="mt-4 text-gray-600">{product.description}</p>
+          <p className="mt-4 text-gray-600 line-clamp-4">
+            {product.description}
+          </p>
           <div className="flex gap-4">
             <Button
               className="mt-4 flex items-center gap-2 rounded-full cursor-not-allowed hover:border-red-500 hover:scale-105 transition duration-500"
