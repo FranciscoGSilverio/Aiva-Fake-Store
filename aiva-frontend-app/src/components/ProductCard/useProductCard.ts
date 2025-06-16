@@ -1,14 +1,21 @@
 import { useDataContext } from "@/providers/DataContext";
 import { deleteProduct } from "@/useCases/products/deleteProduct";
 import { getProducts } from "@/useCases/products/getProducts";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export const useProductCard = () => {
   const { setProducts } = useDataContext();
 
-  const [isConfirmationOpen, setIsConfirmationOpen] = useState<boolean>(false);
-  const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor;
+    setIsMobile(/android|iphone|ipad|mobile/i.test(userAgent));
+  }, []);
 
   const handleDeleteProduct = useCallback(
     async (id: number) => {
@@ -25,13 +32,30 @@ export const useProductCard = () => {
       setIsDeleteLoading(false);
       setIsConfirmationOpen(false);
     },
-    [setIsConfirmationOpen, toast]
+    [setProducts]
   );
+
+  const handleCardClick = (id: number) => {
+    if (!isMobile) {
+      window.open(`/product/${id}`, "_blank");
+      return;
+    }
+
+    if (!isExpanded) {
+      setIsExpanded(true);
+    } else {
+      window.open(`/product/${id}`, "_blank");
+    }
+  };
 
   return {
     isConfirmationOpen,
     setIsConfirmationOpen,
     handleDeleteProduct,
     isDeleteLoading,
+    isExpanded,
+    setIsExpanded,
+    isMobile,
+    handleCardClick,
   };
 };

@@ -5,6 +5,7 @@ import { useProductCard } from "./useProductCard";
 import { toast } from "sonner";
 import { SimpleConfirmationModal } from "../SimpleConfirmationModal/SimpleConfirmationModal";
 import { Button } from "../ui/button";
+import clsx from "clsx";
 
 export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
   const {
@@ -12,14 +13,26 @@ export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
     setIsConfirmationOpen,
     handleDeleteProduct,
     isDeleteLoading,
+    handleCardClick,
+    isMobile,
+    isExpanded,
   } = useProductCard();
   return (
     <>
       <div
         className="group relative rounded-xl overflow-hidden w-[100%] max-w-[500px] h-[350px] bg-white cursor-pointer shadow-md"
-        onClick={() => window.open(`/product/${id}`, "_blank")}
+        onClick={() => handleCardClick(id)}
       >
-        <div className="h-full transition-all duration-500 group-hover:h-[60%]">
+        <div
+          className={clsx(
+            "transition-all duration-500",
+            isMobile
+              ? isExpanded
+                ? "h-[60%]"
+                : "h-full"
+              : "h-full group-hover:h-[60%]"
+          )}
+        >
           <img
             src={images[0]}
             alt={`${title}-image`}
@@ -27,12 +40,30 @@ export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
           />
         </div>
 
-        <div className="h-1/2 p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <div
+          className={clsx(
+            "h-1/2 p-4 transition-opacity duration-500",
+            isMobile
+              ? isExpanded
+                ? "opacity-100"
+                : "opacity-0"
+              : "opacity-0 group-hover:opacity-100"
+          )}
+        >
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-sm mt-1">${price}</p>
         </div>
 
-        <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        <div
+          className={clsx(
+            "absolute top-2 right-2 flex gap-2 transition-opacity duration-300 z-10",
+            isMobile
+              ? isExpanded
+                ? "opacity-100"
+                : "opacity-0"
+              : "opacity-0 group-hover:opacity-100"
+          )}
+        >
           <Button
             onClick={(e) => {
               e.stopPropagation();
