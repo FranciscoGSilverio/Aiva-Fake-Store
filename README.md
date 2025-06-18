@@ -3,7 +3,7 @@
 
 Frontend moderno para e-commerce construído com Next.js, Tailwind CSS e shadcn/ui, com otimização de imagens, testes completos e pipelines CI configuradas com GitHub Actions.
 
-O projeto tem como objetivo mostrar completar o desafio técnico proposto pela AIVA.
+O projeto tem como objetivo completar o desafio técnico proposto pela AIVA.
 A api escolhida foi (https://api.escuelajs.co/docs) para implementar a simulação de um e-commerce.
 
 🔗 Url de produção: https://aiva-fake-store.vercel.app/
@@ -38,7 +38,7 @@ Esses recursos tornam o Next.js uma escolha poderosa para aplicações React de 
 
 ## 🖼️ Otimização de imagens
 
-A otimização de imagens no projeto faz uso do component <Image /> do Next.js. Algumas otimizações que o componente traz são:
+A otimização de imagens no projeto faz uso do component `Image` do Next.js. Algumas otimizações que o componente traz são:
 
 - Redimensionar e servir imagens otimizadas automaticamente nos formatos modernos (WebP, AVIF).
 
