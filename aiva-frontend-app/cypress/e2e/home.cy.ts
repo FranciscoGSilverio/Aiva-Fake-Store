@@ -1,10 +1,10 @@
 describe.skip("Home Page", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit("https://aiva-fake-store.vercel.app/");
   });
 
   it("should render the navigation bar and product grid", () => {
-    cy.get("section") // outer section container
+    cy.get("section")
       .should("exist");
 
     // Select input should exist
@@ -19,16 +19,13 @@ describe.skip("Home Page", () => {
   });
 
   it("should filter products by category and reset the filter", () => {
-    // Open select and choose the first available category
     cy.get("[role=combobox]").click();
     cy.get("[role=option]").first().click();
 
-    // Filter should apply, Trash button should appear
     cy.get("button").within(() => {
       cy.get("svg").should("have.attr", "data-icon", "trash-2");
     });
 
-    // Click reset (Trash) icon
     cy.get("button").find("svg[data-icon='trash-2']").click();
 
     // Products should be restored (no filter)
@@ -37,7 +34,7 @@ describe.skip("Home Page", () => {
 
   it("should open the add product dialog", () => {
     cy.get("button").contains("Adicionar um produto").click();
-    cy.contains("Novo Produto").should("exist"); // assuming the dialog contains this text
+    cy.contains("Novo Produto").should("exist");
   });
 
   it("should trigger logout on click", () => {
