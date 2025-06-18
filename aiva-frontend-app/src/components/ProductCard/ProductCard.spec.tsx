@@ -24,8 +24,13 @@ jest.mock("@/components/ProductCard/useProductCard", () => ({
 jest.mock(
   "@/components/SimpleConfirmationModal/SimpleConfirmationModal",
   () => ({
-    SimpleConfirmationModal: ({ open, onConfirm }: any) =>
-      open ? <button onClick={onConfirm}>Confirm Delete</button> : null,
+    SimpleConfirmationModal: ({
+      open,
+      onConfirm,
+    }: {
+      open: boolean;
+      onConfirm: () => void;
+    }) => (open ? <button onClick={onConfirm}>Confirm Delete</button> : null),
   })
 );
 
