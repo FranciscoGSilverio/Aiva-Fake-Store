@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { SimpleConfirmationModal } from "../SimpleConfirmationModal/SimpleConfirmationModal";
 import { Button } from "../ui/button";
 import clsx from "clsx";
+import Image from "next/image";
 
 export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
   const {
@@ -25,7 +26,7 @@ export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
       >
         <div
           className={clsx(
-            "transition-all duration-500",
+            "transition-all duration-500 relative",
             isMobile
               ? isExpanded
                 ? "h-[60%]"
@@ -33,10 +34,12 @@ export const ProductCard: FC<Product> = ({ id, title, price, images }) => {
               : "h-full group-hover:h-[60%]"
           )}
         >
-          <img
+          <Image
             src={images[0]}
             alt={`${title}-image`}
-            className="w-full h-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
+            className="object-cover w-full h-full"
           />
         </div>
 
