@@ -28,9 +28,9 @@ Embora o Vite seja uma ferramenta excelente para bundling rápido e desenvolvime
 
 - Roteamento baseado em arquivos que simplifica a criação e organização das páginas.
 
-- Otimização automática de imagens via o componente <Image /> do Next.js, que gera imagens otimizadas e com lazy loading nativo.
+- Otimização automática de imagens via o componente `Image` do Next.js, que gera imagens otimizadas e com lazy loading nativo.
 
-- Suporte para API Routes e middlewares, permitindo funcionalidades backend no mesmo projeto.
+- Suporte para API Routes e middlewares, permitindo funcionalidades backend no mesmo projeto se necessário.
 
 - Grande comunidade e ecossistema, com diversos plugins e suporte oficial.
 
