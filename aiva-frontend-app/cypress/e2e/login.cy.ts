@@ -1,6 +1,6 @@
 describe("Login Page", () => {
   beforeEach(() => {
-    cy.visit("https://aiva-fake-store.vercel.app/login");
+    cy.visit("http://localhost:3000/login");
   });
 
   it("should render the login form with default values", () => {
@@ -30,7 +30,7 @@ describe("Login Page", () => {
     const button = cy.get("button[type='submit']");
     button.should("exist");
     button.click();
-    cy.url().should("eq", "https://aiva-fake-store.vercel.app/");
+    cy.url().should("eq", "http://localhost:3000/");
 
   });
 });

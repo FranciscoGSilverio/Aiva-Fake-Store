@@ -1,6 +1,6 @@
 describe("Custom 404 Not Found Page", () => {
   beforeEach(() => {
-    cy.visit("https://aiva-fake-store.vercel.app/login");
+    cy.visit("http://localhost:3000/login");
 
     cy.get("input#username").should("have.value", "Guest1978");
     cy.get("input#password").should("have.value", "guest1978");
@@ -11,7 +11,7 @@ describe("Custom 404 Not Found Page", () => {
   });
 
   it("should display the 404 page on unknown route and return to home when button is clicked", () => {
-    cy.visit("https://aiva-fake-store.vercel.app/unknown", { failOnStatusCode: false });
+    cy.visit("http://localhost:3000/unknown", { failOnStatusCode: false });
 
     cy.contains("404");
     cy.contains("Oops! A página que você está procurando não existe.");

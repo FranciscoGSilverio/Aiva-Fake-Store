@@ -1,6 +1,6 @@
 describe.skip("Home Page", () => {
   beforeEach(() => {
-    cy.visit("https://aiva-fake-store.vercel.app/");
+    cy.visit("http://localhost:3000/");
   });
 
   it("should render the navigation bar and product grid", () => {
